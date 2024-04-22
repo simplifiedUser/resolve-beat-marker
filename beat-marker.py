@@ -91,12 +91,12 @@ if sys.argv[1] == "timeline":
 
     # CALCULATE INTERVAL
 
-    fps = round(project.GetSetting("timelineFrameRate"), ndigits=None)
+    fps = project.GetSetting("timelineFrameRate")
 
     if bpm == 0:
         interval = 0
     else:
-        interval = round(60 * fps / bpm)
+        interval = 60 * fps / bpm
 
     # CREATE TIMELINE MARKERS
 
@@ -107,10 +107,13 @@ if sys.argv[1] == "timeline":
 
     start = offset
     end = timeline.GetEndFrame() - timeline.GetStartFrame()
+    timestamp = start
     count = 1
 
-    for i in range(start, end, interval):
-        timeline.AddMarker(i, "Sand", "Beat " + str(count), "", 1)
+    while timestamp < end:
+        frame = round(timestamp + interval, ndigits=None)
+        timeline.AddMarker(frame, "Sand", "Beat " + str(count), "", 1)
+        timestamp += interval
         count += 1
 
 elif sys.argv[1] == "clip":
