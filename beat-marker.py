@@ -20,7 +20,7 @@ except ImportError:
             'PROGRAMDATA') + "\\Blackmagic Design\\DaVinci Resolve\\Support\\Developer\\Scripting\\Modules\\"
 
     elif sys.platform.startswith("linux"):
-        davinci_path = "/opt/resolve/libs/Fusion/Modules/"
+        davinci_path = "/opt/resolve/Developer/Scripting/Modules/"
 
     else:
         davinci_path = ""
